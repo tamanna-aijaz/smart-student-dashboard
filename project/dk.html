@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Smart Student Dashboard</title>
+  <link rel="stylesheet" href="dk.css" />
+  <!-- jQuery CDN (you may replace with a local copy if offline) -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-3fpZ6NVxGQySgiZ0RgWQy+ATbG6qjZCyE0q6GZ7m3Nc=" crossorigin="anonymous"></script>
+</head>
+<body>
+  <header class="app-header">
+    <h1>Smart Student Dashboard</h1>
+    <div class="datetime">
+      <span id="currentDate"></span>
+      <span id="currentTime"></span>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="card">
+      <h2>Student registration</h2>
+      <form id="studentForm">
+        <div class="grid-2">
+          <div class="form-control">
+            <label for="roll">Roll No</label>
+            <input type="text" id="roll" required />
+          </div>
+          <div class="form-control">
+            <label for="name">Name</label>
+            <input type="text" id="name" required />
+          </div>
+        </div>
+        <div class="grid-2">
+          <div class="form-control">
+            <label for="semester">Semester</label>
+            <select id="semester" required>
+              <option value="">Select</option>
+              <option>1</option><option>2</option><option>3</option><option>4</option>
+              <option>5</option><option>6</option><option>7</option><option>8</option>
+            </select>
+          </div>
+          <div class="form-control">
+            <label for="email">Email</label>
+            <input type="email" id="email" />
+          </div>
+        </div>
+        <div class="grid-2">
+          <div class="form-control">
+            <label for="phone">Phone</label>
+            <input type="tel" id="phone" />
+          </div>
+          <div class="form-control">
+            <label for="dept">Department</label>
+            <input type="text" id="dept" placeholder="Computer Applications" />
+          </div>
+        </div>
+        <div class="form-actions">
+          <button type="submit" class="btn primary">Add student</button>
+          <button type="reset" class="btn">Clear</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="card">
+      <h2>Search and filter</h2>
+      <div class="grid-3">
+        <div class="form-control">
+          <label for="searchRoll">Search by roll</label>
+          <input type="text" id="searchRoll" placeholder="e.g. 23CA041" />
+        </div>
+        <div class="form-control">
+          <label for="searchName">Search by name</label>
+          <input type="text" id="searchName" placeholder="e.g. Sadiya" />
+        </div>
+        <div class="form-control">
+          <label for="filterSemester">Filter by semester</label>
+          <select id="filterSemester">
+            <option value="">All</option>
+            <option>1</option><option>2</option><option>3</option><option>4</option>
+            <option>5</option><option>6</option><option>7</option><option>8</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-actions">
+        <button id="btnClearFilters" class="btn">Clear filters</button>
+        <button id="btnSortNameAsc" class="btn">Sort name A→Z</button>
+        <button id="btnSortNameDesc" class="btn">Sort name Z→A</button>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Student records</h2>
+      <div id="recordCount" class="muted"></div>
+      <div id="studentsTableWrapper" class="table-wrapper">
+        <table id="studentsTable">
+          <thead>
+            <tr>
+              <th>Roll</th>
+              <th>Name</th>
+              <th>Semester</th>
+              <th>Email</th>
+              <th>Phone</th>
+              <th>Dept</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="studentsTbody">
+            <!-- dynamic rows -->
+          </tbody>
+        </table>
+      </div>
+      <div class="form-actions">
+        <button id="btnExportJSON" class="btn primary">Export to JSON</button>
+        <button id="btnImportExternal" class="btn">Import external JSON (AJAX)</button>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>UI enhancements</h2>
+      <div class="enhancements">
+        <button id="btnHighlightTop" class="btn">Highlight top 3 by semester</button>
+        <button id="btnToggleTheme" class="btn">Toggle theme</button>
+        <button id="btnPulseTitle" class="btn">Pulse title</button>
+      </div>
+      <p class="muted">These use jQuery selectors, events, and effects to improve responsiveness and interactivity.</p>
+    </section>
+  </main>
+
+  <footer class="app-footer">
+    <small>Built with HTML, CSS, JavaScript, and jQuery. No database used.</small>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
