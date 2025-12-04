@@ -1,0 +1,79 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Smart Student Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Smart Student Dashboard</h1>
+  <div id="dateTime"></div>
+
+  <!-- Student Registration Form -->
+  <form id="studentForm">
+    <h2>Student Registration</h2>
+    <input type="text" id="rollNo" placeholder="Roll No" required>
+    <input type="text" id="name" placeholder="Name" required>
+    <select id="semester" required>
+      <option value="">Select Semester</option>
+      <option value="1">1st</option>
+      <option value="2">2nd</option>
+      <option value="3">3rd</option>
+      <option value="4">4th</option>
+      <option value="5">5th</option>
+      <option value="6">6th</option>
+    </select>
+    Department
+            <input type="text" id="department" placeholder="e.g., Computer Applications" />
+          </label>
+          <label>
+            Email
+            <input type="email" id="email" placeholder="name@example.com" />
+          </label>
+          <label>
+            Phone
+            <input type="tel" id="phone" placeholder="+91-XXXXXXXXXX" />
+          </label>
+        </div>
+
+    <button type="submit">Add Student</button>
+  </form>
+
+  <!-- Search & Filter -->
+  <div class="dashboard">
+    <h2>Search Students</h2>
+    <input type="text" id="searchInput" placeholder="Search by Roll No, Name, or Semester,">
+    <button onclick="searchStudent()">Search</button>
+  </div>
+
+  <!-- Search Result -->
+  <div class="dashboard">
+    <h2>Search Result</h2>
+    <div id="searchResult"></div>
+  </div>
+
+  <!-- Export Data -->
+  <div class="dashboard">
+    <h2>Export Records</h2>
+    <button onclick="exportToJSON()">Export to JSON</button>
+  </div>
+
+  <!-- External Data via AJAX -->
+  <div class="dashboard">
+    <h2>External Data (AJAX + jQuery)</h2>
+    <button id="fetchData">Fetch Sample JSON</button>
+    <pre id="externalData"></pre>
+  </div>
+
+  <!-- jQuery Enhancements -->
+  <div class="dashboard">
+    <h2>UI Enhancements</h2>
+    <button id="highlightBtn">Highlight Form</button>
+    <button id="fadeBtn">Fade Form</button>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
