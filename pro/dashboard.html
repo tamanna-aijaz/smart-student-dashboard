@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Student Portal Login</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      height: 100vh;
+      display: flex;
+      background-color:#d3d3d3;
+    }
+
+    .left-panel {
+      width: 60%;
+      background: url('your-image.jpg') center/cover no-repeat;
+      color: black;
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .left-panel h1 {
+      font-size: 28px;
+      margin-bottom: 10px;
+    }
+
+    .left-panel p {
+      font-size: 16px;
+      margin: 5px 0;
+    }
+
+    .right-panel {
+      width: 40%;
+      background-color: #ffffff40;
+      padding: 40px;
+      position: relative;
+    }
+
+    .top-bar {
+      position: absolute;
+      top: 20px;
+      right: 40px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      z-index: 2;
+    }
+
+    .datetime {
+      font-size: 14px;
+      color: #333;
+      text-align: right;
+    }
+
+    .hamburger {
+      width: 24px;
+      height: 18px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      cursor: pointer;
+    }
+
+    .hamburger div {
+      height: 3px;
+      background-color: #000000;
+      border-radius: 2px;
+    }
+    .sidebar {
+  position: fixed;
+  top: 0;
+  left: -300px; /* fully hidden off-screen */
+  width: 250px;
+  height: 100%;
+  background-color: #40e0d0;
+  color: black;
+  padding: 40px 20px;
+  box-shadow: 2px 0 8px rgba(0,0,0,0.2);
+  transition: left 0.2s ease;
+  z-index: 1000; /* ensures it overlays everything when active */
+  box-shadow: 4px 0 12px rgba(0,0,0,0.3); /* shadow on right edge */
+
+}
+
+.sidebar.active {
+  left: 0; /* slides in fully */
+}
+
+    
+.sidebar h2 {
+      font-size: 18px;
+      margin-bottom: 20px;
+    }
+
+    .sidebar a {
+      display: block;
+      color: black;
+      text-decoration: none;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.2);
+      transition: all 0.3s ease;
+
+    }
+
+    .sidebar a:hover {
+      background-color: #40e0d0;
+      padding-left: 10px;
+      transition: 0.3s;
+     box-shadow: inset 0 2px 3px rgba(0,0,0,0.2); /* inner shadow effect */
+    transform: translateY(-1px); /* slight dip */
+
+    }
+   
+
+   .dashboard-header {
+  max-width: 300px;
+  margin: 120px auto;
+  text-align: center;
+}
+
+.dashboard-header h2 {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.register-btn {
+  padding: 10px 20px;
+  background-color: #40e0d0;
+  color: black;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  box-shadow: 0 0 8px rgba(0,0,0,0.2); /* shadow on all sides */
+  transition: box-shadow 0.3s ease-in-out;
+  transform: 0.3s ease-in-out; /* smooth ease in/out */
+}
+
+.register-btn:hover {
+  background-color: #1adcc8; /* slightly darker turquoise */
+   box-shadow: 0 0 10px rgba(0,0,0,0.2); /* slightly stronger but still light */
+ 
+}; 
+  
+
+
+
+ 
+.register-btn:active {
+  background-color: #40e0d0; /* even darker turquoise when pressed */
+  box-shadow: 0 0 6px rgba(0,0,0,0.25); /* slightly reduced shadow */
+
+
+}
+
+  </style>
+</head>
+<body>
+  <div class="sidebar" id="sidebar">
+    <h2>Menu</h2>
+    <a href="#">Home</a>
+    <a href="#">Search</a>
+    <a href="#">Update</a>
+    <a href="#">Records</a>
+    <a href="#">Fetch Records</a>
+  </div>
+
+  <div class="left-panel">
+    <h1>Govt. College for Women</h1>
+    <p>MA Road Srinagar</p>
+    <p>NAAC Accredited Grade 'B+'</p>
+    <p>Est. 1950</p>
+    <p>A Constituent College of Cluster University, Srinagar</p>
+  </div>
+
+  <div class="right-panel">
+    <div class="top-bar">
+      <div class="datetime">
+        10:58 AM<br>
+        Tuesday, Nov 7, 23
+      </div>
+      <div class="hamburger" onclick="toggleSidebar()">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+    <div class="dashboard-header">
+  <h2><strong>Smart Student Dashboard</strong></h2>
+  <button class="register-btn">Register</button>
+</div>
+ 
+
+  <script>
+    function toggleSidebar() {
+      const sidebar = document.getElementById("sidebar");
+      sidebar.classList.toggle("active");
+    }
+  </script>
+</body>
+</html>
