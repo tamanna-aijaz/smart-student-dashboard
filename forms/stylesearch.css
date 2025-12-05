@@ -1,0 +1,193 @@
+/* ---------------------------------------------------
+   GLOBAL STYLING
+--------------------------------------------------- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    padding: 50px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    /* Luxury Gradient Background */
+    background: linear-gradient(135deg, #6d28ff, #2575fc, #00c6ff);
+    background-size: 400% 400%;
+    animation: gradientMove 12s ease infinite;
+}
+
+/* Moving gradient animation */
+@keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ---------------------------------------------------
+   SEARCH CONTAINER
+--------------------------------------------------- */
+.search-container {
+    width: 100%;
+    max-width: 550px;
+    background: rgba(255, 255, 255, 0.14);
+    backdrop-filter: blur(15px);
+    padding: 26px;
+    border-radius: 20px;
+
+    /* Premium border + shadow */
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.35);
+
+    animation: fadeIn 0.9s ease-out;
+}
+
+/* Title */
+#searchHeading {
+    text-align: center;
+    margin-bottom: 18px;
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #ffffff;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+
+/* ---------------------------------------------------
+   SEARCH FORM
+--------------------------------------------------- */
+#searchForm {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+#searchInput {
+    padding: 14px;
+    border-radius: 14px;
+    border: 2px solid rgba(255,255,255,0.4);
+    background: rgba(255,255,255,0.25);
+    color: white;
+    font-size: 16px;
+    outline: none;
+    transition: 0.4s;
+}
+
+/* Input glow */
+#searchInput:focus {
+    border-color: #fff;
+    box-shadow: 0 0 12px rgba(255,255,255,0.8);
+}
+
+/* ---------------------------------------------------
+   BUTTON STYLE
+--------------------------------------------------- */
+button {
+    padding: 14px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #9932ff, #4e8cff);
+    background-size: 200%;
+    border: none;
+    cursor: pointer;
+    color: white;
+    font-size: 17px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    transition: all 0.35s ease;
+}
+
+/* Hover Shine */
+button:hover {
+    background-position: right;
+    box-shadow: 0 12px 22px rgba(0, 0, 0, 0.45);
+    transform: translateY(-3px);
+}
+
+/* Click effect */
+button:active {
+    transform: scale(0.96);
+}
+
+/* ---------------------------------------------------
+   RESULT BOX
+--------------------------------------------------- */
+#resultBox {
+    margin-top: 35px;
+    width: 100%;
+    max-width: 800px;
+    animation: fadeIn 0.8s ease-in-out;
+}
+
+#resultBox h2 {
+    text-align: center;
+    font-size: 30px;
+    color: white;
+    margin-bottom: 15px;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.4);
+}
+
+/* ---------------------------------------------------
+   INDIVIDUAL RESULT CARD
+--------------------------------------------------- */
+.record {
+    background: rgba(255,255,255,0.18);
+    backdrop-filter: blur(12px);
+    padding: 22px;
+    border-radius: 18px;
+    margin-bottom: 22px;
+
+    border: 1px solid rgba(255,255,255,0.35);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.28);
+    animation: fadeIn 0.7s ease-out;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover Lift Effect */
+.record:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 35px rgba(0,0,0,0.35);
+}
+
+/* Text style */
+.record p {
+    font-size: 18px;
+    color: #ffffff;
+    margin: 8px 0;
+}
+
+.record strong {
+    color: #ffddff;
+    font-weight: 600;
+}
+
+.record hr {
+    margin-top: 12px;
+    border: 0;
+    height: 1px;
+    background: rgba(255,255,255,0.4);
+}
+
+/* ---------------------------------------------------
+   RESPONSIVE
+--------------------------------------------------- */
+@media (max-width: 600px) {
+    .search-container {
+        padding: 20px;
+    }
+    #searchHeading {
+        font-size: 24px;
+    }
+    .record p {
+        font-size: 16px;
+    }
+}
