@@ -78,10 +78,23 @@ const searchCancelBtn = document.getElementById("searchCancelBtn");
 const searchResult = document.getElementById("searchResult");
 const searchInput = document.getElementById("searchInput");
 
+// ===== Digits-only restriction for Roll Number search =====
+if (searchInput) {
+  searchInput.addEventListener("input", () => {
+    searchInput.value = searchInput.value.replace(/\D/g, "");
+  });
+}
+
 const updateSearchForm = document.getElementById("updateSearchForm");
 const updateCancelBtn = document.getElementById("updateCancelBtn");
 const updateResult = document.getElementById("updateResult");
 const updateInput = document.getElementById("updateInput");
+
+if (updateInput) {
+  updateInput.addEventListener("input", () => {
+    updateInput.value = updateInput.value.replace(/\D/g, "");
+  });
+}
 
 // ===== Navigation links =====
 const homeLink = document.getElementById("homeLink");
@@ -412,6 +425,11 @@ if (homeLink) homeLink.addEventListener("click", (e) => { e.preventDefault(); sh
 if (registerLink) registerLink.addEventListener("click", (e) => { e.preventDefault(); showForm(); });
 if (searchLink) searchLink.addEventListener("click", (e) => { e.preventDefault(); showSearch(); });
 if (updateLink) updateLink.addEventListener("click", (e) => { e.preventDefault(); showUpdate(); });
+const importLink = document.getElementById("importLink");
+if (importLink) importLink.addEventListener("click", (e) => {
+  e.preventDefault();
+  importRecordsFromAPI();
+});
 
 // ===== Search logic =====
 if (searchCancelBtn) searchCancelBtn.addEventListener("click", showHome);
@@ -719,6 +737,46 @@ function exportRecordsJSON() {
   const rightSide = document.querySelector(".right-side");
   showHome();
 }
+
+function importRecordsWithAjax() {
+  const xhr = new XMLHttpRequest();
+  xhr.open("GET", "https://jsonplaceholder.typicode.com/users", true);
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState === 4 && xhr.status === 200) {
+      const externalRecords = JSON.parse(xhr.responseText);
+
+      const mappedRecords = externalRecords.map(user => ({
+        name: user.name,
+        roll: user.id.toString(),
+        semester: "1",
+        email: user.email,
+        phone: user.phone,
+        department: "Imported"
+      }));
+
+      const existing = loadRecords();
+      const merged = existing.concat(mappedRecords);
+      saveAllRecords(merged);
+
+      showOverlay(document.getElementById("dynamicPanel"), "Records imported via AJAX!");
+      playSound("sounds/ding.mp3");
+    }
+  };
+  xhr.send();
+}
+
+
+   
+    // Success feedback
+    showOverlay(document.getElementById("dynamicPanel"), "Records imported successfully!");
+    playSound("sounds/ding.mp3");
+   catch (err) {
+    showErrorOverlay(document.getElementById("dynamicPanel"), "Import failed");
+    playSound("sounds/buzz.mp3");
+    console.error(err);
+  }
+}
+
 
 // ===== Hook up Records and Export with auth =====
 if (recordsLink) {
