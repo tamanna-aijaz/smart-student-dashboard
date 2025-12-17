@@ -765,18 +765,46 @@ function importRecordsWithAjax() {
   xhr.send();
 }
 
+function importRecordsFromAPI() {
+  const xhr = new XMLHttpRequest();
+  xhr.open("GET", "https://jsonplaceholder.typicode.com/users", true);
 
-   
-    // Success feedback
-    showOverlay(document.getElementById("dynamicPanel"), "Records imported successfully!");
-    playSound("sounds/ding.mp3");
-   catch (err) {
-    showErrorOverlay(document.getElementById("dynamicPanel"), "Import failed");
-    playSound("sounds/buzz.mp3");
-    console.error(err);
-  }
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState === 4) {
+      if (xhr.status === 200) {
+        try {
+          const externalRecords = JSON.parse(xhr.responseText);
+
+          const mappedRecords = externalRecords.map(user => ({
+            name: user.name,
+            roll: user.id.toString(),
+            semester: "1",
+            email: user.email,
+            phone: user.phone,
+            department: "Imported"
+          }));
+
+          const existing = loadRecords();
+          const merged = existing.concat(mappedRecords);
+          saveAllRecords(merged);
+
+          showOverlay(document.getElementById("dynamicPanel"), "Records imported via AJAX!");
+          playSound("sounds/ding.mp3");
+
+        } catch (err) {
+          showErrorOverlay(document.getElementById("dynamicPanel"), "Import failed");
+          playSound("sounds/buzz.mp3");
+          console.error(err);
+        }
+      } else {
+        showErrorOverlay(document.getElementById("dynamicPanel"), "Import failed");
+        playSound("sounds/buzz.mp3");
+      }
+    }
+  };
+
+  xhr.send();
 }
-
 
 // ===== Hook up Records and Export with auth =====
 if (recordsLink) {
